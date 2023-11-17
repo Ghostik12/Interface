@@ -10,32 +10,30 @@ namespace Module10
         }
     }
 
-    public interface ICreatable
+    public interface IBook 
     {
-        void Create();
-    }
-    public interface IDeletable
-    {
-        void Delete();
-    }
-    public interface IUpdatable
-    {
-        void Update();
+        void Read();
     }
 
-    class Entity : ICreatable, IDeletable, IUpdatable
+    public interface IDevice
     {
-        public void Create()
+        void TurnOn();
+        void TurnOff();
+    }
+
+    class ElectronicBook : IBook, IDevice
+    {
+        void IBook.Read()
         {
             throw new NotImplementedException();
         }
 
-        public void Delete()
+        void IDevice.TurnOff()
         {
             throw new NotImplementedException();
         }
 
-        public void Update()
+        void IDevice.TurnOn()
         {
             throw new NotImplementedException();
         }
