@@ -6,34 +6,34 @@ namespace Module10
     {
         static void Main(string[] args)
         {
+            var user = new User();
+            var account = new Account();
 
+            IUpdater<Account> updater = new UserService();
+            IUpdater<User> userService = new UserService();
+            userService.Update(user);
+            updater.Update(account);
         }
     }
 
-    public interface IBook 
+    class User
     {
-        void Read();
+
     }
 
-    public interface IDevice
-    {
-        void TurnOn();
-        void TurnOff();
+    class Account : User 
+    { 
+
     }
 
-    class ElectronicBook : IBook, IDevice
+    public interface IUpdater <in T>
     {
-        void IBook.Read()
-        {
-            throw new NotImplementedException();
-        }
+        void Update (T entity);
+    }
 
-        void IDevice.TurnOff()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IDevice.TurnOn()
+    class UserService : IUpdater<User>
+    {
+        public void Update(User entity)
         {
             throw new NotImplementedException();
         }
