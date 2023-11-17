@@ -10,32 +10,32 @@ namespace Module10
         }
     }
 
-    public interface IWrite
+    public interface ICreatable
     {
-        void Write();
+        void Create();
     }
-    public interface IReader
+    public interface IDeletable
     {
-        void Read();
+        void Delete();
     }
-    public interface IMailer
+    public interface IUpdatable
     {
-        void Sendmail();
+        void Update();
     }
 
-    class FileManager : IWrite, IReader, IMailer
+    class Entity : ICreatable, IDeletable, IUpdatable
     {
-        public void Read()
+        public void Create()
         {
             throw new NotImplementedException();
         }
 
-        public void Sendmail()
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        public void Write()
+        public void Update()
         {
             throw new NotImplementedException();
         }
