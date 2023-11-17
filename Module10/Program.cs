@@ -6,38 +6,38 @@ namespace Module10
     {
         static void Main(string[] args)
         {
-            Writer writer = new Writer();
-            ((IWriter)writer).Write();
 
-            Worker worker = new Worker();
-            //worker.Build();
-            ((IWorker)worker).Build();
         }
     }
 
-    public class Writer : IWriter
-    {
-        void IWriter.Write() 
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface IWriter
+    public interface IWrite
     {
         void Write();
     }
-
-    public class Worker : IWorker
+    public interface IReader
     {
-        void IWorker.Build()
-        {
-            throw new Exception();
-        }
+        void Read();
+    }
+    public interface IMailer
+    {
+        void Sendmail();
     }
 
-    public interface IWorker
+    class FileManager : IWrite, IReader, IMailer
     {
-        public void Build();
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Sendmail()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Write()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
