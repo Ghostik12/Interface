@@ -4,38 +4,55 @@ namespace Module10
 {
     class Program
     {
+        static ISum Sum { get; set; }
         static void Main(string[] args)
         {
-            var user = new User();
-            var account = new Account();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Введите два числа");
+                    Console.Write("A: ");
+                    int a = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("B: ");
+                    int b = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("S: ");
 
-            IUpdater<Account> updater = new UserService();
-            IUpdater<User> userService = new UserService();
-            userService.Update(user);
-            updater.Update(account);
+                    Sum = new Summa();
+                    var worker1 = new Worker(Sum);
+                    worker1.Work(a, b);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is FormatException)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Число введенон не корректно");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+            }
         }
     }
 
-    class User
+    public interface ISum
     {
-
+        void Sum(int a, int b);
     }
 
-    class Account : User 
-    { 
-
-    }
-
-    public interface IUpdater <in T>
+    class Summa : ISum
     {
-        void Update (T entity);
-    }
-
-    class UserService : IUpdater<User>
-    {
-        public void Update(User entity)
+        void ISum.Sum(int a, int b)
         {
-            throw new NotImplementedException();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            int c = a + b;
+            Console.WriteLine($"S: {c}");
         }
+    }
+
+    public interface IWorker
+    {
+        void Work(int a, int b);
     }
 }
